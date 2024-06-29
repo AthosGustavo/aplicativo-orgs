@@ -1,6 +1,6 @@
 # Aprendendo Android Nativo com Java e Kotlin.
 
-*Documento em constante edição*
+*Aprendizagem e documentação do projeto*
 
 <details>
  <summary>Introdução e conceitos</summary>
