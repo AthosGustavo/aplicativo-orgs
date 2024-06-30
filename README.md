@@ -257,6 +257,10 @@ public class MainActivity extends Activity {
    
   </details>
 
+  ## RecyclerView X ScrollView
+   - `RecyclerView:` Usado para exibir uma lista grande e dinâmica de itens.
+   - `ScrollView:` Usado para que o usuário role através de um layout simples que não muda.
+     
   </details>
   
   <details> 
