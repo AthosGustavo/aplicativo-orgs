@@ -1,5 +1,7 @@
 package projeto.piloto.orgs.model;
 
+import android.widget.TextView;
+
 import java.math.BigDecimal;
 
 public class Produto {

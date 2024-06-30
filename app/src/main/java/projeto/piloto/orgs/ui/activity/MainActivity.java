@@ -1,10 +1,12 @@
 package projeto.piloto.orgs.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,27 +15,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import projeto.piloto.orgs.R;
+import projeto.piloto.orgs.dao.ProdutosDAO;
 import projeto.piloto.orgs.model.Produto;
 import projeto.piloto.orgs.ui.recyclerview.adapter.ListaProdutosAdapter;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+  }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
     RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-    List<Produto> adapter = new ArrayList<>();
-    adapter.add(new Produto("Arroz", "Arroz da marca A", BigDecimal.valueOf(10.00)));
-    adapter.add(new Produto("Macarrão 2", "Macarrão da marca B", BigDecimal.valueOf(20.0)));
-    adapter.add(new Produto("Leite", "Leite da marca Z", BigDecimal.valueOf(30.0)));
-    adapter.add(new Produto("Ovos", "Ovos 20 unidades", BigDecimal.valueOf(40.0)));
 
-    ListaProdutosAdapter listaProdutosAdapter = new ListaProdutosAdapter(this, adapter);  // instancia o adapter
+
+    ListaProdutosAdapter listaProdutosAdapter = new ListaProdutosAdapter(this, ProdutosDAO.retornaTodosProdutos());  // instancia o adapter
     recyclerView.setAdapter(listaProdutosAdapter);  // seta o adapter no recyclerView atraves do setAdapter
-
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    View floatingActionButton = findViewById(R.id.floatingActionButton);
+    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, FormularioProdutoActivity.class);
+        startActivity(intent);
+      }
+    });
   }
+
 }
