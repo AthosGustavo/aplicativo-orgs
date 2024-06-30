@@ -285,3 +285,35 @@ public class MainActivity extends Activity {
  - `wrap_content:` Faz com que a `View` seja grande o suficiente para acomodar seu conteúdo.
  - `match_constraint ou 0dp:` Faz com que a `View` ocupe todo o espaço disponível do seu elemento pai respeitando as restrições do `ConstraintLayout`
 </details>
+
+<details>
+ <summary>Invocando uma Activity através de outra Activity</summary>
+
+ ## Método setOnClickListener
+  - setOnClickListener adiciona um evento de click em uma view.
+  - Em seu parâmetro, o método recebe uma classe anônima que da acesso ao método onClick
+  - O objeto Intent é usado para transmitir informações entre componentes
+  - `Intent intent = new Intent(ondeEstou, paraOndeIrei);`
+
+ ```java
+ View floatingActionButton = findViewById(R.id.floatingActionButton);
+
+ floatingActionButton.setOnClickListener(new View.OnClickListener() {
+  @Override
+  public void onClick(View v) {
+    Intent intent = new Intent(MainActivity.this, FormularioProdutoActivity.class);
+    startActivity(intent);
+  }
+});
+ ```
+ 
+</details>
+
+![Captura de tela de 2024-06-30 15-39-34](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/7f061366-87a5-4581-b6cd-47bdc45e02ba)
+
+![lifecycle-1](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/de498277-2d29-490f-a290-0022bdc8b3af)
+
+
+
+
+
