@@ -1,7 +1,14 @@
 # Aprendendo Android Nativo com Java e Kotlin.
 
 *Aprendizagem e documentação do projeto*
-
+<details>
+ <summary>Android Studio</summary>
+   
+ - `Ctrl + F` Pesquisar uma palavra em um arquivo.
+ - `Ctrl + N` Pesquisar classes
+ - `Ctrl + Shift + F` Pesquisar uma palavra no projeto inteiro
+   
+</details>
 <details>
  <summary>Introdução e conceitos</summary>
 
