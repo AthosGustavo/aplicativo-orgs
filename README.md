@@ -309,9 +309,16 @@ public class MainActivity extends Activity {
  
 </details>
 
-![Captura de tela de 2024-06-30 15-39-34](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/7f061366-87a5-4581-b6cd-47bdc45e02ba)
+<details>
+ <summary>Cíclo de vida de um componente</summary>
+ 
+ ![Captura de tela de 2024-06-30 15-39-34](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/7f061366-87a5-4581-b6cd-47bdc45e02ba)
 
-![lifecycle-1](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/de498277-2d29-490f-a290-0022bdc8b3af)
+ ![lifecycle-1](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/de498277-2d29-490f-a290-0022bdc8b3af)
+ 
+</details>
+
+
 
 
 
