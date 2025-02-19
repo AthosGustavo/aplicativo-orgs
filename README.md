@@ -87,6 +87,7 @@ public class MainActivity extends Activity {
    - Comporta listas horizontais e verticais.
 
    ## Exibição de itens dinâmicos com RecyclerView
+   - `tools:listitem="@layout/produto_item"`: Atributo que recebe a View que será renderizada
 
    ### Classe Adapter
    ```java
