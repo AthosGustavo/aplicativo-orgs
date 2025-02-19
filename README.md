@@ -15,6 +15,7 @@
  # Introdução e conceitos básicos
 
  ## AndroidManifest
+  - A Activity de entrada deve ser declarada nesse aquivo
  
  ## Montagem e exibição de uma tela
 
