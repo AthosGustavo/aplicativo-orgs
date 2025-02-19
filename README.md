@@ -7,6 +7,7 @@
  - `Ctrl + F` Pesquisar uma palavra em um arquivo.
  - `Ctrl + N` Pesquisar classes
  - `Ctrl + Shift + F` Pesquisar uma palavra no projeto inteiro
+ - `Alt + Shift + X` Fecha todas as abas
    
 </details>
 <details>
@@ -16,6 +17,11 @@
 
  ## AndroidManifest
   - A Activity de entrada deve ser declarada nesse aquivo
+
+ ## Diretórios
+  - *res/drawable*: Pasta onde é guardada imagens que podem ser usadas no aplicativo
+  - *res/mipmap* : Guarda ícones
+  - *res/values* : Utils
  
  ## Montagem e exibição de uma tela
 
