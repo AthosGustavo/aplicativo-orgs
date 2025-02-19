@@ -8,6 +8,7 @@
  - `Ctrl + N` Pesquisar classes
  - `Ctrl + Shift + F` Pesquisar uma palavra no projeto inteiro
  - `Alt + Shift + X` Fecha todas as abas
+ - `Crlt + Shift + F12` Fecha todas as telas que não estão sendo usadas
    
 </details>
 <details>
