@@ -85,7 +85,9 @@ public class MainActivity extends Activity {
   - Uso: Os elementos do layout, como TextView, Button, etc., podem ser acessados diretamente como atributos da classe de binding.
   - https://www.alura.com.br/artigos/view-binding-android
 
-
+ ## Interface Pacelable
+  -  Permiti que objetos sejam passados entre Activities ou Fragments.
+ 
 </details>
 
 <details>
