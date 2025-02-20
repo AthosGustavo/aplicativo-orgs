@@ -285,6 +285,80 @@ public class MainActivity extends Activity {
 
    ```
    
+  <details>
+   <summary>Alert Dialog</summary>
+
+   # Alert Dialog
+   *Caixa de diálogo*
+   - `AlertDialog.Builder`: Classe interna estática responsável por configurar a caixa de diálogo
+
+   ### Forma curta
+   - Útil quando não há necessidade de modificar o AlertDialog após a criação.
+
+   ```java
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmação");
+        builder.setMessage("Deseja confirmar esta ação?");
+
+        // Botão de Confirmar
+        builder.setPositiveButton("Confirmar", (dialog, which) -> 
+            Toast.makeText(this, "Confirmado!", Toast.LENGTH_SHORT).show()
+        );
+
+        // Botão de Cancelar
+        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+   ```
+   
+   ### Forma completa
+   - Precisa alterar dinamicamente o diálogo depois de criá-lo (ex.: habilitar/desabilitar botões)
+   - Exemplo: Desativar o botão de confirmar até o usuário confirmar que leu os termos.
+  
+   ```java
+     private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Termos de Uso");
+        builder.setMessage("Você deve aceitar os termos antes de continuar.");
+
+        // Criando um CheckBox programaticamente
+        CheckBox checkBox = new CheckBox(this);
+        checkBox.setText("Li e aceito os termos");
+
+        // Criando um layout para adicionar o CheckBox ao diálogo
+        LinearLayout layout = new LinearLayout(this);
+        layout.setPadding(50, 20, 50, 20);
+        layout.addView(checkBox);
+
+        builder.setView(layout);
+
+        // Criando o diálogo, mas ainda não exibindo
+        AlertDialog alertDialog = builder.create();
+
+        // Adicionando os botões
+        builder.setPositiveButton("Confirmar", (dialog, which) -> 
+            Toast.makeText(this, "Termos aceitos!", Toast.LENGTH_SHORT).show()
+        );
+        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+
+        // Exibindo o diálogo após adicionar os botões
+        alertDialog = builder.show();
+
+        // Obtendo o botão "Confirmar" e desativando inicialmente
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setEnabled(false);
+
+        // Ativar o botão "Confirmar" somente se o usuário marcar o CheckBox
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> 
+            positiveButton.setEnabled(isChecked)
+        );
+    }
+   ```
+   
+  </details>
    
   </details>
 
