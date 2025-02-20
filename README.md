@@ -430,7 +430,14 @@ public class MainActivity extends Activity {
  ![lifecycle-1](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/de498277-2d29-490f-a290-0022bdc8b3af)
  
 </details>
+<detalis>
+ <summary>Banco de dados</summary>
 
+ # Banco de dados
+
+ ## Room
+ - https://developer.android.com/training/data-storage/room?hl=pt-br#java
+</detalis>
 
 
 
