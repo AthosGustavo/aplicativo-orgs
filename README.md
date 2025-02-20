@@ -78,6 +78,13 @@ public class MainActivity extends Activity {
   - `xmlns:android`: Dar acesso a todos os atributos do sistema operacional do android.
   - `xmlns:tools`: Usado para acessar as ferramentas de design do Android Studio que podem ajudar a melhorar a aparência do layout no editor de layout, mas não afetam o layout em tempo de execução.
   - `xmlns:app`: Usado para acessar atributos personalizados que você definiu em seu aplicativo
+
+ ## View Binding
+  - View Binding é um recurso do Android que gera uma classe vinculada ao layout XML, permitindo acessar as views de forma segura e eficiente, sem findViewById().
+  - Exemplo: Se o layout for activity_principal.xml, o ViewBinding gerará automaticamente a classe ActivityPrincipalBinding.
+  - Uso: Os elementos do layout, como TextView, Button, etc., podem ser acessados diretamente como atributos da classe de binding.
+
+
 </details>
 
 <details>
