@@ -9,6 +9,18 @@
  - `Ctrl + Shift + F` Pesquisar uma palavra no projeto inteiro
  - `Alt + Shift + X` Fecha todas as abas
  - `Crlt + Shift + F12` Fecha todas as telas que não estão sendo usadas
+
+ ## Adb connect
+ Comandos para conectar o celular por wi-fi
+ - 1- `cd C:/platform-tools`
+ - 2- Comando para derrubar o server: `.\adb kill-server`
+ - 3- Comando para levantar: `.\adb start-server`
+ - 4- Comando para ver os dispositivos conectados: `.\adb devices`
+ - 5- Comando para escolher a porta: `.\adb tcpip 5555`
+ - 6- Comando para conectar: `.\adb connect ip_celular:5555`
+
+
+ 
    
 </details>
 <details>
