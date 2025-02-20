@@ -320,6 +320,9 @@ public class MainActivity extends Activity {
 
 <details>
  <summary>Cíclo de vida de um componente</summary>
+
+  - `onCretate` : Chamado apenas uma vez
+  - `onResume` : chamado todas as vezes que a tela está em execução
  
  ![Captura de tela de 2024-06-30 15-39-34](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/7f061366-87a5-4581-b6cd-47bdc45e02ba)
 
