@@ -83,6 +83,7 @@ public class MainActivity extends Activity {
   - View Binding é um recurso do Android que gera uma classe vinculada ao layout XML, permitindo acessar as views de forma segura e eficiente, sem findViewById().
   - Exemplo: Se o layout for activity_principal.xml, o ViewBinding gerará automaticamente a classe ActivityPrincipalBinding.
   - Uso: Os elementos do layout, como TextView, Button, etc., podem ser acessados diretamente como atributos da classe de binding.
+  - https://www.alura.com.br/artigos/view-binding-android
 
 
 </details>
