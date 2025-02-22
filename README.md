@@ -440,6 +440,62 @@ public class MainActivity extends Activity {
 
   ## Room
   - https://developer.android.com/training/data-storage/room?hl=pt-br#java
+
+  ## Conversão de tipos
+  - Em algunas situações o SQLite não possui uma correspondência para um tipo do java e nesse caso deve haver uma conversão.
+
+  *Classe conversora*
+  ```java
+  import androidx.room.TypeConverter;
+  import java.math.BigDecimal;
+
+  public class BigDecimalConverter {
+
+    @TypeConverter
+    public static BigDecimal fromDouble(Double value) {
+        return value == null ? null : BigDecimal.valueOf(value);
+    }
+
+    @TypeConverter
+    public static Double toDouble(BigDecimal bigDecimal) {
+        return bigDecimal == null ? null : bigDecimal.doubleValue();
+    }
+  }
+
+  ```
+ *Interface DAO*
+ ```java
+ import androidx.room.Dao;
+ import androidx.room.Insert;
+ import androidx.room.Query;
+ import java.util.List;
+
+ @Dao
+ public interface ProdutoDao {
+
+    @Insert
+    void inserir(Produto produto);
+
+    @Query("SELECT * FROM Produto")
+    List<Produto> listarTodos();
+ }
+
+
+ ```
+
+*Banco de dados*
+```java
+ import androidx.room.Database;
+ import androidx.room.RoomDatabase;
+ import androidx.room.TypeConverters;
+
+ @Database(entities = {Produto.class}, version = 1)
+ @TypeConverters({BigDecimalConverter.class}) // Adicionando o conversor
+ public abstract class AppDatabase extends RoomDatabase {
+    public abstract ProdutoDao produtoDao();
+ }
+
+```
 </details>
 
 
