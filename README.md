@@ -28,6 +28,9 @@
 
  # Introdução e conceitos básicos
 
+ ## Debugg
+  - https://developer.android.com/studio/inspect/database
+ 
  ## AndroidManifest
   - A Activity de entrada deve ser declarada nesse aquivo
 
