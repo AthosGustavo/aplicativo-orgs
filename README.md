@@ -3,6 +3,10 @@
 *Aprendizagem e documentação do projeto*
 <details>
  <summary>Android Studio</summary>
+
+ ## Build
+ - `limpar projeto` : *build -> clean project*
+ - `Rebuildar` : *build -> Rebuild project* ou *Marteinho da aba build*
    
  - `Ctrl + F` Pesquisar uma palavra em um arquivo.
  - `Ctrl + N` Pesquisar classes
