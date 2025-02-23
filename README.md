@@ -92,6 +92,45 @@ public class MainActivity extends Activity {
   - Uso: Os elementos do layout, como TextView, Button, etc., podem ser acessados diretamente como atributos da classe de binding.
   - https://www.alura.com.br/artigos/view-binding-android
 
+ ### 1: Declarar ViewBinding em build.gradle
+ ```html
+ buildFeatures {
+        viewBinding true
+ }
+ ```
+
+ ### 2: Limpar e Rebuildar o projeto
+
+ ### 3: Implementando ViewBinding
+ 
+ *Sem View Binding*
+ ```java
+ private ActivityListaProdutosBinding activityListaProdutosBinding;
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    setContentView(R.layout.activity_lista_produtos);
+    configuraFloatingActionButton();
+ }
+ ```
+
+ *Com ViewBinding*
+ ```java
+ private ActivityListaProdutosBinding activityListaProdutosBinding;
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    activityListaProdutosBinding = ActivityListaProdutosBinding.inflate(getLayoutInflater());
+    setContentView(activityListaProdutosBinding.getRoot());
+
+    configuraFloatingActionButton();
+ }
+ ```
+
  ## Interface Pacelable
   -  Permiti que objetos sejam passados entre Activities ou Fragments.
  
