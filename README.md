@@ -497,8 +497,58 @@ public class MainActivity extends Activity {
 <details>
  <summary>Cíclo de vida de um componente</summary>
 
-  - `onCretate` : Chamado apenas uma vez
-  - `onResume` : chamado todas as vezes que a tela está em execução
+  # Cíclo de vida de uma Activity
+
+  ## onCreate
+  - O método é chamado apenas uma vez quando a Activity é criada, sendo assim, esse é o momento para configurar componentes da interface, pois garante que a UI estará pronta antes do usuário interajir com a tela.
+
+  *EXEMPLO*
+  ```java
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+
+    EdgeToEdge.enable(this);
+    setContentView(activityMainBinding.getRoot());
+
+
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+      Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+      v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+      return insets;
+
+    });
+
+    btnAbrirCamera();
+  }
+
+  
+  private void btnAbrirCamera(){
+
+    View btnAbrirCamera = activityMainBinding.btnAbrirCamera;
+    btnAbrirCamera.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+          ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+          // Se a permissão já não foi concedida em um momento anterior, a linha anterior chamará a função onRequestPermissionsResult
+          // de forma implícita para requisitar a permissão e se a permissão for autorizada, o próprio método vai abrir a câmera.
+        } else {
+          abrirCamera();
+        }
+
+      }
+    });
+  }
+  ```
+
+  - `btnAbrirCamera` : O método recupera a view do layout e apenas configura o evento de clique. A ação do botão só funcionará depois que o usuário pressionar.
+
+ ## onResume
+ - Chamado todas as vezes que a tela está em execução
  
  ![Captura de tela de 2024-06-30 15-39-34](https://github.com/AthosGustavo/aplicativo-orgs/assets/112649935/7f061366-87a5-4581-b6cd-47bdc45e02ba)
 
