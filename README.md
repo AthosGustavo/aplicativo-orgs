@@ -23,33 +23,29 @@
  - 5- Comando para escolher a porta: `.\adb tcpip 5555`
  - 6- Comando para conectar: `.\adb connect ip_celular:5555`
 
+ ## Debugg
+  - https://developer.android.com/studio/inspect/database
 
- 
+ ## Diretórios
+  - *res/drawable*: Pasta onde é guardada imagens que podem ser usadas no aplicativo
+  - *res/mipmap* : Guarda ícones
+  - *res/values* : Utils
    
 </details>
 <details>
  <summary>Introdução e conceitos</summary>
 
  # Introdução e conceitos básicos
-
- ## Debugg
-  - https://developer.android.com/studio/inspect/database
  
  ## AndroidManifest
   - A Activity de entrada deve ser declarada nesse aquivo
 
- ## Diretórios
-  - *res/drawable*: Pasta onde é guardada imagens que podem ser usadas no aplicativo
-  - *res/mipmap* : Guarda ícones
-  - *res/values* : Utils
- 
  ## Montagem e exibição de uma tela
 
  ### Activity
   - Activity representa uma tela com  qual o usuário pode interagir
   - Uma classe genérica é criada e extende a classe Activity, dessa forma a classe recebe os métodos e propriedades de uma activity.
   - Toda classe que extende de Activity possui um arquivo xml onde será declarado os componentes.
-  - O ciclo de vida de uma atividade inclui vários estados, como onCreate, onStart, onResume, onPause, onStop, onDestroy,
  
  ### View
   - O objeto View no Android é a base para a construção de qualquer elemento de interface do usuário.
@@ -67,8 +63,7 @@
   - Objeto que da acesso a arquivos de layout, strings, imagens, cores, estilos e outros tipos de recursos.
   - A classe R é dividida em várias subclasses internas, cada uma correspondendo a um tipo específico de recurso. Por exemplo, R.layout contém identificadores para todos os arquivos de layout, R.string e etc.
 
-    
-*EXEMPLO*
+ *EXEMPLO*
 ```java
 public class MainActivity extends Activity {
 
@@ -80,6 +75,39 @@ public class MainActivity extends Activity {
   }
 }
 ```
+
+ ### Intent
+  - Classe que permite iniciar uma Activity a partir de outra
+  - Chamar outros apps como abrir câmera ou e-mail
+  - Enviar dados entre Activitys
+
+ #### Intent Explícita
+ *Especifica diretamente a classe da Activity que será iniciada.*
+ 
+ `Navegação entre Activitys`
+ ```java
+  Intent intent = new Intent(OndeEstouActivity.this, ParaOndeIreiActivity.class);
+  startActivity(intent);
+ ```
+
+ `Passagem de dados entre Activitys`
+ ```java
+ Intent intent = new Intent(MainActivity.this, SegundaActivity.class);
+ intent.putExtra("chave", "Olá, Segunda Activity!");
+ startActivity(intent);
+
+ //Recuperando od dados na SegundaActivity
+ String mensagem = getIntent().getStringExtra("chave");
+ Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+
+
+ ```
+ #### Intent Implícita
+ *Usamos Intent implícita quando não sabemos exatamente qual app será aberto*
+ ```java
+ Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+ ```
+ - `MediaStore.ACTION_IMAGE_CAPTURE`: é uma ação predefinida que indica ao Android que queremos capturar uma imagem.
 
  ## Namespace usados no arquivo xml
   - `xmlns:android`: Dar acesso a todos os atributos do sistema operacional do android.
@@ -451,7 +479,6 @@ public class MainActivity extends Activity {
   - setOnClickListener adiciona um evento de click em uma view.
   - Em seu parâmetro, o método recebe uma classe anônima que da acesso ao método onClick
   - O objeto Intent é usado para transmitir informações entre componentes
-  - `Intent intent = new Intent(ondeEstou, paraOndeIrei);`
 
  ```java
  View floatingActionButton = findViewById(R.id.floatingActionButton);
@@ -543,7 +570,126 @@ public class MainActivity extends Activity {
 
 ```
 </details>
+<details>
+ <summary>Funcionalidades</summary>
 
+ # Funcionalidades
+
+ ## Abertura de câmera no Android 7
+
+ ### AndroidManifest
+ ```xml
+ <uses-permission android:name="android.permission.CAMERA" />
+ <uses-feature android:name="android.hardware.camera" />
+ ```
+ ![image](https://github.com/user-attachments/assets/0443e331-6eba-4d84-a57b-b3d8ee80574f)
+
+ ### MainActivity
+ ```java
+  package projeto.piloto.abrir_camera_android_sete;
+
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Toast;
+import android.Manifest;
+
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import projeto.piloto.abrir_camera_android_sete.databinding.ActivityMainBinding;
+
+public class MainActivity extends AppCompatActivity {
+
+  private ActivityMainBinding activityMainBinding = null;
+  private static final int REQUEST_CAMERA_PERMISSION = 100;
+  private static final int REQUEST_IMAGE_CAPTURE = 101;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+
+    EdgeToEdge.enable(this);
+    setContentView(activityMainBinding.getRoot());
+
+
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+      Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+      v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+      return insets;
+
+    });
+
+
+
+    btnAbrirCamera();
+  }
+
+  private void btnAbrirCamera(){
+
+    View btnAbrirCamera = activityMainBinding.btnAbrirCamera;
+    btnAbrirCamera.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+          ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+        } else {
+      
+          Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+          if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+          }
+        }
+
+      }
+    });
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    if (requestCode == REQUEST_CAMERA_PERMISSION) {
+      if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        btnAbrirCamera(); // Se a permissão foi concedida, abre a câmera
+      } else {
+        Toast.makeText(this, "Permissão negada!", Toast.LENGTH_SHORT).show();
+      }
+    }
+  }
+
+}
+ ```
+
+#### 🔍Explicação Detalhada
+
+##### btnAbrirCamera
+
+ - `ContextCompat.checkSelfPermission(Contexto, Permissao)` : Método da classe COntextCompat da bibliotaca AndroidX que verifica se uma permissão foi dada pelo usuário.
+ - `ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);`: Usado para solicitar uma permissão em tempo de execução
+
+##### onRequestPermissionsResult
+ - O método é chamado implícitamente pelo Android após chamar o método btnAbrirCamera
+ - `grantedResult`
+   
+![image](https://github.com/user-attachments/assets/dcdb96a0-0ccf-48ec-91e9-8087792fe55f)
+![image](https://github.com/user-attachments/assets/2f3210dc-eb6e-48f8-b3ae-9955a9a39644)
+
+
+ 
+</details>
 
 
 
