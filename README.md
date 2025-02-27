@@ -91,7 +91,12 @@ public class MainActivity extends Activity {
  ```
 
  `Passagem de dados entre Activitys`
+
+ 
+ 
  ```java
+ //Parcelable: Em situações em que o dado passado é um objeto personalizado, esse dado deverá ser serializado através da implementação da interface Parcelable
+
  Intent intent = new Intent(MainActivity.this, SegundaActivity.class);
  intent.putExtra("chave", "Olá, Segunda Activity!");
  startActivity(intent);
