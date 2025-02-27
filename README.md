@@ -567,7 +567,8 @@ public class MainActivity extends Activity {
   # Banco de dados
 
   ## Room
-  - https://developer.android.com/training/data-storage/room?hl=pt-br#java
+  - `Implementando Romm`: https://developer.android.com/training/data-storage/room?hl=pt-br#java
+  - `Métodos do DAO`: https://developer.android.com/training/data-storage/room/accessing-data?hl=pt-br
 
   ## Conversão de tipos
   - Em algunas situações o SQLite não possui uma correspondência para um tipo do java e nesse caso deve haver uma conversão.
