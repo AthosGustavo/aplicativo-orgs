@@ -170,6 +170,26 @@ public class MainActivity extends Activity {
 </details>
 
 <details>
+ <summary>Classes</summary>
+ 
+# Classes
+
+## Bitmap
+ - Classe usada para representar e manipular uma imagem.
+
+### Métodos
+ - `Método para transformar uma imagem em um objeto Bitmap`: Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.imagem);
+ - `Método para redimensionar um Bitmap` : Bitmap miniatura = Bitmap.createScaledBitmap(bitmapOriginal, larguraMiniatura, alturaMiniatura, true);
+
+ Passando uma imagem para imageView usando apenas o id do drawable
+ ```java
+ int imagemId = R.drawable.exemplo_imagem; // Guarda a referência da imagem
+ imageView.setImageResource(imagemId); // Define a imagem no ImageView
+
+ ```
+</details>
+
+<details>
  <summary>Componentes</summary>
 
  # Componentes
