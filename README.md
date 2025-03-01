@@ -766,7 +766,31 @@ public class MainActivity extends AppCompatActivity {
 
  
 </details>
+<details>
+ <summary>Fragments</summary>
+ 
+ # Fragments
+*Cada fragmento geralmente representa uma parte específica da IU de uma tela maior.*
+ - O fragment representa uma parte reutilizável da interface,a exemplo de um componente que se hospeda em outro fragment ou em um componente maior como uma Activity.
+ - Um fragmento define e gerencia o próprio layout, tem o próprio ciclo de vida e pode processar os próprios eventos de entrada.
 
+ ## Responsabilidades entre Activity e Fragments
+
+ ### Activity
+ - São como contêineres principais ideias para gerenciar elementos que devem estar presentes em toda aplicaão ou em várias telas, como gaveta de navegação (navigation drawer), que fornece acesso a diferentes partes do aplicativo.
+ - Devem Controlar o fluxo principal da aplicação, gerenciando a navegação entre diferentes telas (ou fragmentos). Por exemplo, uma atividade pode coordenar a transição entre a tela inicial de login, a tela principal do aplicativo e outras funcionalidades.
+
+ ### Fragment
+ - Devem gerenciar apenas o seu componente
+
+ ## Exemplo
+ - Nesse caso temos 1 Fragment e dois elementos globais.O Fragmente se trata da grade rautilizável que se adápta em duas formas de tela e os elementos globais gerenciados pela Activity: A gaveta de navegação e barra de navegação.
+ ![image](https://github.com/user-attachments/assets/882df844-cd1d-41dd-bb04-25c872509094)
+
+ 
+
+ 
+</details>
 
 
 
