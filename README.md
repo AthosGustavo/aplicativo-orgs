@@ -791,6 +791,8 @@ public class MainActivity extends AppCompatActivity {
  - Nesse caso temos 1 Fragment e dois elementos globais.O Fragmente se trata da grade rautilizável que se adápta em duas formas de tela e os elementos globais gerenciados pela Activity: A gaveta de navegação e barra de navegação.
  ![image](https://github.com/user-attachments/assets/882df844-cd1d-41dd-bb04-25c872509094)
 
+ ## Cíclo de vida
+ 
  ## Implementação 
  
  ### ViewModel
