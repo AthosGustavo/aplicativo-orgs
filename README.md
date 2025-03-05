@@ -791,6 +791,25 @@ public class MainActivity extends AppCompatActivity {
  - Nesse caso temos 1 Fragment e dois elementos globais.O Fragmente se trata da grade rautilizável que se adápta em duas formas de tela e os elementos globais gerenciados pela Activity: A gaveta de navegação e barra de navegação.
  ![image](https://github.com/user-attachments/assets/882df844-cd1d-41dd-bb04-25c872509094)
 
+ ## Implementação 
+ 
+ ### ViewModel
+  - Componente projetado para armazenar e gerenciar dados relacionados à interface de forma consciente do ciclo de vida.
+  - Ele evita a perda de dados quando a Activity ou Fragment são recriados
+  - Pode ser usado junto com callbacks que são executadas com base na observação da mudança dos dados
+
+ ### ViewModelProvider
+  - Classe que retorna uma instância de um ViewModel com base em argumentos
+
+ #### Construtores
+  - `ViewModelProvider(requireActivity()).get(DadosCompartilhadosFragment.class);`
+    - retorna uma ViewModel com escopo do host
+    - requireActivity() retorna a Activity que hospeda o Fragment
+    - `Para que serve:` Quando diferentes Fragments dentro da mesma Activity precisam acessar os mesmos dados.Ideal para comunicação entre Fragments que compartilham um mesmo ViewModel.
+  - `ViewModelProvider(requireParentFragment()).get(ListViewModel.class);` 
+
+
+
  
 
  
