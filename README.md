@@ -484,6 +484,8 @@ public class MainActivity extends Activity {
    # ViewGroups
    - É um tipo de `View` feita para comportar outras views, como textos, botões, imagens e etc.
 
+   ## FrameLayout
+   - Utilizado para organizar seus elementos de forma sobreposta (stacked). Ou seja, ele empilha os componentes dentro dele, exibindo um componente de cada vez no topo.
    
   </details>
    
@@ -792,6 +794,9 @@ public class MainActivity extends AppCompatActivity {
  ![image](https://github.com/user-attachments/assets/882df844-cd1d-41dd-bb04-25c872509094)
 
  ## Cíclo de vida
+
+ ![ciclo-vida-fragment](https://github.com/user-attachments/assets/e9c2a6fa-3898-4c6f-be53-f8b91be6177a)
+ 
  
  ## Implementação 
  
@@ -800,6 +805,7 @@ public class MainActivity extends AppCompatActivity {
   - Ele evita a perda de dados quando a Activity ou Fragment são recriados
   - Pode ser usado junto com callbacks que são executadas com base na observação da mudança dos dados
 
+ 
  ### ViewModelProvider
   - Classe que retorna uma instância de um ViewModel com base em argumentos
 
@@ -808,9 +814,86 @@ public class MainActivity extends AppCompatActivity {
     - retorna uma ViewModel com escopo do host
     - requireActivity() retorna a Activity que hospeda o Fragment
     - `Para que serve:` Quando diferentes Fragments dentro da mesma Activity precisam acessar os mesmos dados.Ideal para comunicação entre Fragments que compartilham um mesmo ViewModel.
-  - `ViewModelProvider(requireParentFragment()).get(ListViewModel.class);` 
+  - `ViewModelProvider(requireParentFragment()).get(ListViewModel.class);`
+    - requireParentFragment() retorna o Fragment pai do Fragment atual
+    - `Para que serve:` Quando temos um Fragment pai que gerencia um ViewModel, e queremos compartilhar os dados entre os Fragments filhos.
 
 
+  build.gradle app
+ 
+ ```xml
+ dependencies {
+    def fragment_version = "1.8.6"
+    implementation "androidx.fragment:fragment:$fragment_version"
+ }
+ ```
+ 
+ ```java
+ public class DadosCompartilhadosFragment extends ViewModel {
+  
+  private final MutableLiveData<String> dado = new MutableLiveData<>();
+
+  public DadosCompartilhadosFragment() {
+  }
+
+  public void atribuirValor(String msg){
+    dado.setValue(msg);
+  }
+  
+  public LiveData<String> retornaValorDado(){
+    return dado;
+  }
+ }
+ ```
+ ```java
+ //Classe Fragment
+
+ @Override
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    dadosCompartilhadosFragment = new ViewModelProvider(requireActivity()).get(DadosCompartilhadosFragment.class);
+    configuraBotaoEnviar(view);
+  }
+ ```
+ ```java
+ //Activity
+
+ private void iniciaAtributos(Context context){
+    this.activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+    this.homeFragment = new HomeFragment();
+    this.consoleFragment = new ConsoleFragment();
+    this.gameFragment = new GameFragment();
+    this.buttonHome = activityMainBinding.buttonHome;
+    this.buttonConsoles = activityMainBinding.buttonConsole;
+    this.buttonGames = activityMainBinding.buttonGames;
+  }
+
+  private void configuraBotoes(){
+    this.buttonHome.setOnClickListener(this);
+    this.buttonConsoles.setOnClickListener(this);
+    this.buttonGames.setOnClickListener(this);
+  }
+
+  private void setFragment(Fragment fragment){
+    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    fragmentTransaction.replace(R.id.frame_fragments, fragment);
+    fragmentTransaction.commit();
+  }
+
+  @Override
+  public void onClick(View view) {
+    if(view.getId() == R.id.button_home){
+      setFragment(this.homeFragment);
+    }
+    if(view.getId() == R.id.button_games){
+      setFragment(this.gameFragment);
+    }
+    if(view.getId() == R.id.button_console){
+      setFragment(this.consoleFragment);
+    }
+
+ }
+ ```
 
  
 
