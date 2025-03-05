@@ -772,7 +772,9 @@ public class MainActivity extends AppCompatActivity {
  <summary>Fragments</summary>
  
  # Fragments
-*Cada fragmento geralmente representa uma parte específica da IU de uma tela maior.*
+ *Documementação: https://developer.android.com/guide/fragments?hl=pt-br*
+
+ **"Cada fragmento geralmente representa uma parte específica da IU de uma tela maior".**
  - O fragment representa uma parte reutilizável da interface,a exemplo de um componente que se hospeda em outro fragment ou em um componente maior como uma Activity.
  - Um fragmento define e gerencia o próprio layout, tem o próprio ciclo de vida e pode processar os próprios eventos de entrada.
 
