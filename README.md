@@ -13,6 +13,7 @@
  - `Ctrl + Shift + F` Pesquisar uma palavra no projeto inteiro
  - `Alt + Shift + X` Fecha todas as abas
  - `Crlt + Shift + F12` Fecha todas as telas que não estão sendo usadas
+ - `Crlt + R` Renomear palavras iguais
 
  ## Adb connect
  Comandos para conectar o celular por wi-fi
