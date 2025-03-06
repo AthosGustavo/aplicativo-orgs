@@ -496,9 +496,23 @@ public class MainActivity extends Activity {
  <summary>Posicionamento</summary>
 
  # Posicionamento
+
+ ## Propriedades layout_width, height e weight
+  
  - `match_parent:` Faz com que a `View` ocupe todo o espaço disponível do seu elemento pai NÃO respeitando as restrições do `ConstraintLayout`
  - `wrap_content:` Faz com que a `View` seja grande o suficiente para acomodar seu conteúdo.
  - `match_constraint ou 0dp:` Faz com que a `View` ocupe todo o espaço disponível do seu elemento pai respeitando as restrições do `ConstraintLayout`
+ - `android:layout_weight="1":` Define um peso equilibrado para um view que divide o espaço com outras views com o uso combinado de `android:layout_width="0dp"` 
+
+## Propriedade gravity
+ - A propriedade é usada para indicar uma direção em que um componente será posicionado, como center,start,end,left e right.
+ - `android:gravity:` Usado em uma ViewGroup pai indicar em qual direção os componentes filhos serão posicionados.
+ - `android:layout_gravity:` Usado em uma View filha para indicar como ela irá se posicionar dentro do componente pai.
+
+## Espaçamentos
+ - `android:padding="dp"`
+ - `android:layout_margin`
+
 </details>
 
 <details>
